@@ -10,15 +10,24 @@ An intelligent API that extracts structured data from various marksheet formats 
 
 
 ---
+## Deployment Status & Notes
+
+* **Frontend UI:** The Streamlit frontend has been successfully deployed and is publicly accessible.
+'https://marksheet-extractor-frontend.onrender.com'
+This service runs without issue due to its lightweight nature.
+
+* **Backend API:** The FastAPI backend has been fully developed, tested, and containerized using Docker. The application works perfectly in any standard local or cloud environment with sufficient memory.
+
+    However, the deployment on Render's free tier consistently fails at runtime due to an **out-of-memory error (exceeding the 512MB RAM limit)**. This is an expected outcome given the resource-intensive nature of the AI/ML libraries used. The primary drivers of the high memory usage are:
+    * **The DocTR library** and its pre-trained OCR models.
+    * The underlying **PyTorch deep learning framework**, which DocTR is built upon.
+
+    This memory limitation of the free hosting platform is a hardware constraint and not an error in the application's code or logic.
+
+* **To test the complete, working application,** please refer to the `README.md` in the GitHub repository for simple, step-by-step instructions on how to run the project locally using the provided `Dockerfile`. This will showcase the full functionality of the backend API as intended.
+
 ---
-## Deployed Links
-
-* **Live Frontend Demo:** `https://marksheet-extractor-frontend.onrender.com`
-* **Live API Endpoint:** `https://marksheet-extractor-api.onrender.com`
 * **Project Approach Note:** `/ApproachNote.pdf`
-
-
-*<ins>Note: The services are deployed on a free tier and may take 30-60 seconds to wake up on the first request.</ins>*
 
 ---
 ✨ Features
