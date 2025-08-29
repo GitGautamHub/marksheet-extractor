@@ -1,0 +1,12 @@
+fastapi
+python-multipart
+uvicorn
+torch
+python-doctr
+pdf2image
+numpy
+python-dotenv
+google-generativeai
+python-dateutil
+streamlit
+requests
