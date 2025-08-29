@@ -10,4 +10,4 @@ google-generativeai
 python-dateutil
 streamlit
 requests
-python-magic-bin
+python-magic
