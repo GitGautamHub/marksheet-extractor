@@ -44,7 +44,7 @@ An intelligent API that extracts structured data from various marksheet formats 
 
 *   **Backend:** Python, FastAPI
     
-*   **AI/ML:** Google Gemini, DocTR (OCR)
+*   **AI/ML:** Google Gemini (gemini-2.0-flash), DocTR (OCR)
     
 *   **Frontend:** Streamlit
     
