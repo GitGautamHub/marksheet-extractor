@@ -46,7 +46,7 @@ An intelligent API that extracts structured data from various marksheet formats 
 
 Bash
 
-    git clone <your-repo-link>
+    git clone https://github.com/GitGautamHub/marksheet-extractor.git
     cd marksheet-extractor 
 
 #### 2\. Create a virtual environment:
