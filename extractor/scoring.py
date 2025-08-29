@@ -1,6 +1,8 @@
 import re
 from dateutil.parser import parse
 
+
+# to check if a date is valid
 def is_valid_date(date_string: str) -> bool:
     if not date_string or not isinstance(date_string, str): return False
     try:
@@ -9,14 +11,18 @@ def is_valid_date(date_string: str) -> bool:
     except (ValueError, TypeError):
         return False
 
+# to check if a name contains only letters and spaces
 def contains_only_letters_and_space(name: str) -> bool:
     if not name or not isinstance(name, str): return False
     return bool(re.match(r'^[A-Z\s\.]+$', name.upper()))
 
+
+# to check if a value is numeric
 def is_numeric(value: any) -> bool:
     if value is None: return False
     return isinstance(value, (int, float)) or (isinstance(value, str) and value.isdigit())
 
+# to calculate confidence score based on field name and value
 def calculate_confidence_score(field_name: str, value: any, context: dict = None) -> float:
     base_score = 0.85
     if value is None or str(value).strip() == "":

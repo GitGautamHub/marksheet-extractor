@@ -14,7 +14,7 @@ logging.info("Initializing OCR predictor...")
 predictor = ocr_predictor(pretrained=True)
 logging.info("OCR predictor initialized successfully.")
 
-
+# function to extract text from documents
 def extract_text_from_doc(doc_bytes: bytes, content_type: str) -> str:
     """
     Extracts text from a document (image or PDF) using doctr.

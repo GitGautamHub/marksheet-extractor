@@ -4,6 +4,8 @@ import logging
 import google.generativeai as genai
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
+
+# prompt
 PROMPT_TEMPLATE = """
 You are an expert AI assistant specialized in extracting structured information from OCR text of academic mark sheets.
 Your task is to parse the raw text and return a clean, structured JSON object.
@@ -60,6 +62,7 @@ Here is the raw OCR text:
 ---
 """
 
+# function to get structured data from OCR text
 def get_structured_data(ocr_text: str) -> dict:
     """
     Calls the Gemini API to convert raw OCR text to structured JSON.

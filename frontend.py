@@ -12,25 +12,31 @@ API_KEY = os.getenv("API_KEY")
 MAX_FILE_SIZE_MB = 10
 MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024
 
+
 st.set_page_config(page_title="Marksheet Extractor", layout="wide", initial_sidebar_state="collapsed")
 
-# --- Session State Initialization ---
+
+# Session State Initialization
 if 'results' not in st.session_state:
     st.session_state.results = None
 if 'uploaded_files_map' not in st.session_state:
     st.session_state.uploaded_files_map = {}
 
-# --- Header ---
+
+# Header
 st.title("📄 AI-Powered Marksheet Extractor")
 st.markdown(f"Upload one or more marksheets (JPG, PNG, PDF). **Max file size: {MAX_FILE_SIZE_MB} MB per file.**")
 
-# --- File Uploader ---
+
+# File Uploader
 all_uploaded_files = st.file_uploader(
     "Drag and drop your marksheets here",
     type=["jpg", "jpeg", "png", "pdf"],
     accept_multiple_files=True
 )
 
+
+# Validate uploaded files
 valid_files = []
 if all_uploaded_files:
 
@@ -45,9 +51,10 @@ if all_uploaded_files:
     for f in invalid_files:
         st.warning(f"**{f.name}** was not processed because it is larger than the {MAX_FILE_SIZE_MB} MB limit.")
 
+
+# to extract information from valid files
 if valid_files:
     if st.button("✨ Extract Information from All Valid Files", use_container_width=True, type="primary"):
-        # We only process the valid_files list
         st.session_state.uploaded_files_map = {f.name: f for f in valid_files}
         
         api_files = [("files", (f.name, f.getvalue(), f.type)) for f in valid_files]
@@ -66,6 +73,8 @@ if valid_files:
                 st.error(f"Connection Error: Could not connect to the API. Details: {e}")
                 st.session_state.results = None
 
+
+# Display Results
 if st.session_state.results:
     st.header("Extraction Results", divider="rainbow")
 
@@ -109,3 +118,4 @@ if st.session_state.results:
                         )
                     with st.expander("👁️ View Extracted JSON"):
                         st.json(data)
+                        

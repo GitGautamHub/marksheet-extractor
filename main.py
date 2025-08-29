@@ -11,6 +11,7 @@ from extractor import schemas
 
 load_dotenv()
 
+# FastAPI application instance
 app = FastAPI(title="Marksheet Extractor",
               description="An API to extract structured data from academic marksheets.",
               version="1.0.0")
@@ -19,13 +20,15 @@ api_key_header = APIKeyHeader(name="X-API-Key")
 API_KEY = os.getenv("API_KEY")
 
 
-
+# API Key Validation
 async def get_api_key(api_key_header: str = Security(api_key_header)):
     if api_key_header == API_KEY:
         return api_key_header
     else:
         raise HTTPException(status_code=403, detail="Could not validate credentials")
 
+
+# File Processing
 async def process_single_file(file: UploadFile):
     if file.content_type not in ["image/jpeg", "image/png", "application/pdf"]:
         return {"filename": file.filename, "error": "Invalid file type."}
@@ -92,7 +95,7 @@ async def process_single_file(file: UploadFile):
 
     return {"filename": file.filename, "data": response_data}
 
-
+# API Endpoint to handle batch file uploads and return extracted data
 @app.post("/extract/")
 async def extract_data(files: List[UploadFile] = File(...), api_key: str = Security(get_api_key)):
     tasks = [process_single_file(file) for file in files]

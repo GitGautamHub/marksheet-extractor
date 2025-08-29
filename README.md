@@ -5,7 +5,7 @@ An intelligent API that extracts structured data from various marksheet formats 
 
 * * *
 
-![Logo](public/app.png)
+![App](public/app.png)
 
 ✨ Features
 ----------
