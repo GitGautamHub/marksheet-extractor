@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from doctr.models import ocr_predictor
 from pdf2image import convert_from_bytes
 import numpy as np
+import magic
 
 load_dotenv()
 
@@ -23,13 +24,16 @@ def extract_text_from_doc(doc_bytes: bytes, content_type: str) -> str:
     all_text = ""
     
     try:
-        if content_type in ["image/jpeg", "image/png"]:
+        actual_content_type = magic.from_buffer(doc_bytes, mime=True)
+        logging.info(f"Received content_type: {content_type}, Verified as: {actual_content_type}")
+
+        if actual_content_type in ["image/jpeg", "image/png"]:
             logging.info("Processing as single image...")
             doc = DocumentFile.from_images(doc_bytes)
             result = predictor(doc)
             all_text = result.render()
 
-        elif content_type == "application/pdf":
+        elif actual_content_type == "application/pdf":
             logging.info("Processing as PDF...")
             images_pil = convert_from_bytes(doc_bytes, dpi=300)
             if not images_pil:
@@ -42,13 +46,13 @@ def extract_text_from_doc(doc_bytes: bytes, content_type: str) -> str:
             all_text = result.render()
 
         else:
-            logging.warning(f"Unsupported content type: {content_type}")
+            logging.warning(f"Unsupported content type: {actual_content_type}")
             return ""
 
         return all_text.strip()
 
     except Exception as e:
-        logging.error(f"Error during OCR processing for content type {content_type}: {e}")
+        logging.error(f"Error during OCR processing for content type {actual_content_type}: {e}")
         if "PDFInfoNotInstalledError" in str(e):
             logging.error("Poppler is likely not installed.")
         return ""

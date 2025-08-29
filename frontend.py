@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # --- Configuration ---
-API_URL = "http://127.0.0.1:8000/extract/"
+API_URL = os.getenv("API_URL", "http://127.0.0.1:8000/extract/")
 API_KEY = os.getenv("API_KEY")
 MAX_FILE_SIZE_MB = 10
 MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024

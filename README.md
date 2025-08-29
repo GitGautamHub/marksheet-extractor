@@ -34,7 +34,7 @@ An intelligent API that extracts structured data from various marksheet formats 
     
 *   **Frontend:** Streamlit
     
-*   **Libraries:** Pydantic, python-dotenv, pdf2image
+*   **Libraries:** Pydantic, python-dotenv, pdf2image, python-magic
     
 
 * * *
@@ -123,6 +123,6 @@ Bash
     curl -X 'POST' \
       'http://127.0.0.1:8000/extract/' \
       -H 'accept: application/json' \
-      -H 'X-API-Key: your-chosen-secret-api-key' \
+      -H 'X-API-Key: your-secret-api-key' \
       -F 'files=@/path/to/your/marksheet1.pdf' \
       -F 'files=@/path/to/your/marksheet2.png'
