@@ -6,4 +6,4 @@ set -o errexit
 pip install -r requirements.txt
 
 # Install system dependencies for Poppler
-apt-get update && apt-get install -y poppler-utils
+sudo apt-get update && sudo apt-get install -y poppler-utils
