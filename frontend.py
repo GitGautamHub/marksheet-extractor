@@ -24,7 +24,7 @@ if 'uploaded_files_map' not in st.session_state:
 
 
 # Header
-st.title("📄 AI-Powered Marksheet Extractor")
+st.title("📄 GyanPatra (ज्ञानपत्र) : AI-Powered Marksheet Extractor")
 st.markdown(f"Upload one or more marksheets (JPG, PNG, PDF). **Max file size: {MAX_FILE_SIZE_MB} MB per file.**")
 
 

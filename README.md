@@ -1,12 +1,26 @@
-📄 AI-Powered Marksheet Extractor
+📄 GyanPatra (ज्ञानपत्र) : AI-Powered Marksheet Extractor
 =================================
 
 An intelligent API that extracts structured data from various marksheet formats (images and PDFs) using advanced OCR and Large Language Models.
 
 * * *
 
+
 ![App](public/app.png)
 
+
+---
+---
+## Deployed Links
+
+* **Live Frontend Demo:** `https://marksheet-extractor-frontend.onrender.com`
+* **Live API Endpoint:** `https://marksheet-extractor-api.onrender.com`
+* **Project Approach Note:** `/ApproachNote.pdf`
+
+
+*<ins>Note: The services are deployed on a free tier and may take 30-60 seconds to wake up on the first request.</ins>*
+
+---
 ✨ Features
 ----------
 
